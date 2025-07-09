@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            border-radius: 20%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon-16 {
+            width: 16px;
+            height: 16px;
+            font-size: 8px;
+            border-radius: 3px;
+        }
+
+        .icon-48 {
+            width: 48px;
+            height: 48px;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+
+        .icon-128 {
+            width: 128px;
+            height: 128px;
+            font-size: 48px;
+            border-radius: 25px;
+        }
+
+        .icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+        }
+
+        .icon span {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="icon icon-16"><span>S</span></div>
+    <div class="icon icon-48"><span>SA</span></div>
+    <div class="icon icon-128"><span>SAL</span></div>
+</body>
+
+</html>

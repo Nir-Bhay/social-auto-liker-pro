@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            width: 380px;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .header p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .platform-selector {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .platform-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .platform-btn:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .platform-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .platform-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .status-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            align-items: center;
+        }
+
+        .status-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .status-value {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-active {
+            background: #4caf50;
+            animation: pulse 2s infinite;
+        }
+
+        .status-inactive {
+            background: #f44336;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .controls {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 6px;
+            border-radius: 3px;
+            background: #e0e0e0;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+                      height: 18px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+        }
+
+        .slider-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .speed-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .speed-option {
+            flex: 1;
+            padding: 8px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .speed-option:hover {
+            border-color: #667eea;
+        }
+
+        .speed-option.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #d32f2f;
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .stats {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .stats h3 {
+            margin: 0 0 15px 0;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .settings-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .settings-link:hover {
+            opacity: 1;
+        }
+
+        /* LinkedIn Features Styles */
+        .toggle-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .toggle-item:hover {
+            background: #e9ecef;
+        }
+        
+        .toggle-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .toggle-item span {
+            flex: 1;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .toggle-item input:disabled + span {
+            opacity: 0.5;
+        }
+    </style>
+    </head>
+    
+    <body>
+        <div class="header">
+            <h1>Social Auto-Liker Pro</h1>
+            <p>Automate your social engagement</p>
+            <div class="settings-link" id="settingsBtn">
+                <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                    <path
+                        d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97c0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1c0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
+                </svg>
+            </div>
+        </div>
+    
+        <div class="platform-selector">
+            <div class="platform-btn active" data-platform="linkedin">
+                <img src="assets/linkedin-logo.svg" class="platform-icon" alt="LinkedIn">
+                <span>LinkedIn</span>
+            </div>
+            <div class="platform-btn" data-platform="instagram">
+                <img src="assets/instagram-logo.svg" class="platform-icon" alt="Instagram">
+                <span>Instagram</span>
+            </div>
+        </div>
+    
+        <div class="content">
+            <div class="status-card">
+                <div class="status-row">
+                    <span class="status-label">Status</span>
+                    <span class="status-value">
+                        <span class="status-indicator status-inactive"></span>
+                        <span id="status">Inactive</span>
+                    </span>
+                </div>
+                <div class="status-row">
+                    <span class="status-label">Current Platform</span>
+                    <span class="status-value" id="currentPlatform">LinkedIn</span>
+                </div>
+                <div class="status-row">
+                    <span class="status-label">Likes Today</span>
+                    <span class="status-value"><span id="likesToday">0</span> / <span id="maxLikes">50</span></span>
+                </div>
+            </div>
+    
+            <div class="controls">
+                <div class="control-group">
+                    <label>Daily Limit</label>
+                    <div class="slider-container">
+                        <input type="range" id="dailyLimit" min="10" max="200" value="50" step="10">
+                        <span class="slider-value" id="dailyLimitValue">50</span>
+                    </div>
+                </div>
+    
+                <div class="control-group">
+                    <label>Speed Mode</label>
+                    <div class="speed-options">
+                        <div class="speed-option" data-speed="slow">
+                            <div>🐢</div>
+                            <div>Slow</div>
+                        </div>
+                        <div class="speed-option active" data-speed="medium">
+                            <div>🚶</div>
+                            <div>Medium</div>
+                        </div>
+                        <div class="speed-option" data-speed="fast">
+                            <div>🏃</div>
+                            <div>Fast</div>
+                        </div>
+                        <div class="speed-option" data-speed="custom">
+                            <div>⚙️</div>
+                            <div>Custom</div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="control-group" id="customSpeedControls" style="display:none;">
+                    <label>Custom Delay (seconds)</label>
+                    <div class="slider-container">
+                        <span>Min:</span>
+                        <input type="range" id="minDelay" min="1" max="10" value="3" step="0.5">
+                        <span class="slider-value" id="minDelayValue">3</span>
+                    </div>
+                    <div class="slider-container" style="margin-top: 10px;">
+                        <span>Max:</span>
+                        <input type="range" id="maxDelay" min="2" max="20" value="8" step="0.5">
+                        <span class="slider-value" id="maxDelayValue">8</span>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- LinkedIn Features Section -->
+            <div class="linkedin-features" id="linkedinFeatures" style="display:none;">
+                <div class="controls" style="margin-bottom: 15px;">
+                    <h3
+                        style="margin: 0 0 15px 0; font-size: 16px; color: #333; display: flex; align-items: center; gap: 8px;">
+                        <img src="assets/linkedin-logo.svg" width="20">
+                        <span>Quick Settings</span>
+                    </h3>
+    
+                    <div style="display: grid; gap: 10px;">
+                        <label class="toggle-item">
+                            <input type="checkbox" id="likeEnabled" checked>
+                            <span>👍 Auto Like Posts</span>
+                        </label>
+                        <!-- Add this after the other toggle items -->
+                        <label class="toggle-item" style="margin-top: 10px; background: #f0f0f0;">
+                            <input type="checkbox" id="likeComments">
+                            <span>💬 Also like comments (not recommended)</span>
+                        </label>
+    
+                        <label class="toggle-item">
+                            <input type="checkbox" id="followEnabled">
+                            <span>👥 Auto Follow</span>
+                        </label>
+    
+                    <label class="toggle-item">
+                        <input type="checkbox" id="connectEnabled">
+                        <span>🤝 Auto Connect</span>
+                    </label>
+    
+                        <label class="toggle-item">
+                            <input type="checkbox" id="commentEnabled" disabled>
+                            <span>💬 Auto Comment (Coming Soon)</span>
+                        </label>
+                    </div>
+    
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+                        <a href="#" id="advancedSettings" style="color: #667eea; text-decoration: none; font-size: 14px;">
+                            ⚙️ Advanced Settings →
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="startBtn">
+                    <span>▶️ Start</span>
+                </button>
+                <button class="btn btn-danger" id="stopBtn" style="display:none;">
+                    <span>⏹️ Stop</span>
+                </button>
+                <button class="btn btn-secondary" id="pauseBtn" style="display:none;">
+                    <span>⏸️ Pause</span>
+                </button>
+            </div>
+    
+            <div class="stats">
+                <h3>📊 Statistics</h3>
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalLikes">0</div>
+                        <div class="stat-label">Total Likes</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="sessionLikes">0</div>
+                        <div class="stat-label">This Session</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="avgSpeed">0</div>
+                        <div class="stat-label">Avg/Hour</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="timeActive">0m</div>
+                        <div class="stat-label">Time Active</div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="warning">
+                <span>⚠️</span>
+                <span>Educational purpose only. May violate platform ToS. Use responsibly.</span>
+            </div>
+        </div>
+    
+        <script src="popup.js"></script>
+    </body>
+    
+    </html>

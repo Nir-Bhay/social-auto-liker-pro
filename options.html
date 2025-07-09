@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Social Auto-Liker Pro - Settings</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .section h2 {
+            margin-top: 0;
+            color: #444;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        input[type="time"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .danger-zone {
+            border: 2px solid #f44336;
+            background: #ffebee;
+        }
+
+        .danger-zone h2 {
+            color: #f44336;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .preset-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+                .preset-card:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .preset-card.selected {
+            border-color: #667eea;
+            background: #e8eaf6;
+        }
+
+        .preset-card h4 {
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+
+        .preset-card p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+    </head>
+    
+    <body>
+        <h1>⚙️ Social Auto-Liker Pro Settings</h1>
+    
+        <div class="success-message" id="successMessage">
+            ✅ Settings saved successfully!
+        </div>
+    
+        <div class="tabs">
+            <div class="tab active" data-tab="general">General</div>
+            <div class="tab" data-tab="linkedin">LinkedIn</div>
+            <div class="tab" data-tab="instagram">Instagram</div>
+            <div class="tab" data-tab="advanced">Advanced</div>
+            <div class="tab" data-tab="about">About</div>
+        </div>
+    
+        <!-- General Tab -->
+        <div class="tab-content active" id="general">
+            <div class="section">
+                <h2>🎯 General Settings</h2>
+    
+                <div class="form-group">
+                    <label>Default Platform</label>
+                    <select id="defaultPlatform">
+                        <option value="linkedin">LinkedIn</option>
+                        <option value="instagram">Instagram</option>
+                    </select>
+                </div>
+    
+                <div class="form-group">
+                    <label>Theme</label>
+                    <select id="theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="auto">Auto (System)</option>
+                    </select>
+                </div>
+    
+                <div class="checkbox-group">
+                    <input type="checkbox" id="notifications" checked>
+                    <label for="notifications">Enable notifications</label>
+                </div>
+    
+                <div class="checkbox-group">
+                    <input type="checkbox" id="soundEffects">
+                    <label for="soundEffects">Enable sound effects</label>
+                </div>
+    
+                <div class="checkbox-group">
+                    <input type="checkbox" id="autoStart">
+                    <label for="autoStart">Auto-start when opening platform</label>
+                </div>
+            </div>
+    
+            <div class="section">
+                <h2>⏰ Schedule Settings</h2>
+    
+                <div class="checkbox-group">
+                    <input type="checkbox" id="enableSchedule">
+                    <label for="enableSchedule">Enable scheduled automation</label>
+                </div>
+    
+                <div class="form-group">
+                    <label>Active Hours</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="time" id="startTime" value="09:00">
+                        <span style="padding: 8px;">to</span>
+                        <input type="time" id="endTime" value="17:00">
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <label>Active Days</label>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="monday" checked>
+                            <label for="monday">Monday</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="tuesday" checked>
+                            <label for="tuesday">Tuesday</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="wednesday" checked>
+                            <label for="wednesday">Wednesday</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="thursday" checked>
+                            <label for="thursday">Thursday</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="friday" checked>
+                            <label for="friday">Friday</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="saturday">
+                            <label for="saturday">Saturday</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="sunday">
+                            <label for="sunday">Sunday</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- LinkedIn Tab -->
+        <div class="tab-content" id="linkedin">
+            <div class="section">
+                <h2>🔗 LinkedIn Basic Settings</h2>
+    
+                <div class="form-group">
+                    <label>Daily Like Limit</label>
+                    <input type="number" id="linkedinDailyLimit" min="10" max="500" value="50">
+                </div>
+    
+                <div class="form-group">
+                    <label>Speed Preset</label>
+                    <div class="preset-card" data-speed="conservative">
+                        <h4>🐢 Conservative (Recommended)</h4>
+                        <p>3-8 seconds between actions. Very safe but slow.</p>
+                    </div>
+                    <div class="preset-card selected" data-speed="balanced">
+                        <h4>⚖️ Balanced</h4>
+                        <p>1.5-4 seconds between actions. Good balance of speed and safety.</p>
+                    </div>
+                    <div class="preset-card" data-speed="aggressive">
+                        <h4>🚀 Aggressive</h4>
+                        <p>0.5-1.5 seconds between actions. Fast but risky.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="section">
+                <h2>🎯 Advanced Features</h2>
+    
+                <div class="form-group">
+                    <h3>Auto Like Settings</h3>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="likePostsOnly" checked>
+                        <label for="likePostsOnly">Like posts only (skip comments)</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="skipSponsored" checked>
+                        <label for="skipSponsored">Skip sponsored posts</label>
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <h3>Auto Follow Settings</h3>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="followPostAuthors">
+                        <label for="followPostAuthors">Follow post authors only</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Daily Follow Limit</label>
+                        <input type="number" id="dailyFollowLimit" min="5" max="50" value="20">
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <h3>Auto Connect Settings (Coming Soon)</h3>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="enableConnect" disabled>
+                        <label for="enableConnect">Enable auto-connect</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Connection Message Template</label>
+                        <textarea id="connectionMessage" rows="3"
+                            disabled>Hi, I'd like to connect with you on LinkedIn.</textarea>
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <h3>Auto Comment Settings (Coming Soon)</h3>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="enableComment" disabled>
+                        <label for="enableComment">Enable auto-comment</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Comment Templates (one per line)</label>
+                        <textarea id="commentTemplates" rows="5" disabled>Great insight!
+    Thanks for sharing!
+    Very interesting perspective!</textarea>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="section">
+                <h2>🤖 Behavior Settings</h2>
+    
+                <div class="checkbox-group">
+                    <input type="checkbox" id="humanizeActions" checked>
+                    <label for="humanizeActions">Add random delays (more human-like)</label>
+                </div>
+    
+                <div class="checkbox-group">
+                    <input type="checkbox" id="randomScroll" checked>
+                    <label for="randomScroll">Random scroll patterns</label>
+                </div>
+    
+                <div class="form-group">
+                    <label>Activity Hours</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="time" id="linkedinStartTime" value="09:00">
+                        <span>to</span>
+                        <input type="time" id="linkedinEndTime" value="17:00">
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Instagram Tab -->
+        <div class="tab-content" id="instagram">
+            <div class="section">
+                <h2>📸 Instagram Settings</h2>
+    
+                <div class="form-group">
+                    <label>Daily Like Limit</label>
+                    <input type="number" id="instagramDailyLimit" min="10" max="200" value="30">
+                </div>
+    
+                <div class="form-group">
+                    <label>Content Types</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="igPosts" checked>
+                        <label for="igPosts">Posts</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="igReels" checked>
+                        <label for="igReels">Reels</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="igStories">
+                        <label for="igStories">Stories</label>
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <label>Target Sections</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="igHome" checked>
+                        <label for="igHome">Home Feed</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="igExplore">
+                        <label for="igExplore">Explore Page</label>
+                    </div>
+                </div>
+    
+                <div class="checkbox-group">
+                    <input type="checkbox" id="igSkipVerified">
+                    <label for="igSkipVerified">Skip verified accounts</label>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Advanced Tab -->
+        <div class="tab-content" id="advanced">
+            <div class="section">
+                <h2>🔧 Advanced Settings</h2>
+    
+                <div class="form-group">
+                    <label>User Agent Spoofing</label>
+                    <select id="userAgent">
+                        <option value="default">Default (No spoofing)</option>
+                        <option value="mobile">Mobile Device</option>
+                        <option value="tablet">Tablet</option>
+                        <option value="random">Random</option>
+                    </select>
+                </div>
+    
+                <div class="checkbox-group">
+                    <input type="checkbox" id="debugMode">
+                    <label for="debugMode">Enable debug mode (console logs)</label>
+                </div>
+    
+                <div class="checkbox-group">
+                    <input type="checkbox" id="experimentalFeatures">
+                    <label for="experimentalFeatures">Enable experimental features</label>
+                </div>
+    
+                <div class="form-group">
+                    <label>Export/Import Settings</label>
+                    <div class="button-group">
+                        <button id="exportSettings">📤 Export</button>
+                        <button id="importSettings">📥 Import</button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="section danger-zone">
+                <h2>⚠️ Danger Zone</h2>
+    
+                <div class="form-group">
+                    <button id="resetStats">Reset Statistics</button>
+                </div>
+    
+                <div class="form-group">
+                    <button id="resetAll">Reset All Settings</button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- About Tab -->
+        <div class="tab-content" id="about">
+            <div class="section">
+                <h2>📱 About Social Auto-Liker Pro</h2>
+                <p><strong>Version:</strong> 2.0.0</p>
+                <p><strong>Developer:</strong> Educational Purpose</p>
+                <p><strong>License:</strong> MIT</p>
+    
+                <h3>⚠️ Disclaimer</h3>
+                <p>This extension is for educational purposes only. Using automation tools may violate the Terms of Service
+                    of social media platforms and could result in account restrictions or bans.</p>
+    
+                <h3>🚀 Features</h3>
+                <ul>
+                    <li>Multi-platform support (LinkedIn & Instagram)</li>
+                    <li>Customizable speed and limits</li>
+                    <li>Schedule automation</li>
+                    <li>Detailed statistics</li>
+                    <li>Blacklist filtering</li>
+                    <li>Safe mode options</li>
+                </ul>
+    
+                <h3>🆘 Support</h3>
+                <p>For issues or suggestions, please visit our GitHub repository.</p>
+    
+                <h3>📝 Changelog</h3>
+                <div style="background: #f5f5f5; padding: 10px; border-radius: 4px;">
+                    <p><strong>v2.0.0</strong> - Multi-platform support, scheduling, advanced settings</p>
+                    <p><strong>v1.5.0</strong> - Added Instagram support</p>
+                    <p><strong>v1.0.0</strong> - Initial release with LinkedIn support</p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="button-group" style="margin-top: 20px;">
+            <button id="saveSettings">💾 Save Settings</button>
+            <button id="cancelSettings" style="background: #757575;">Cancel</button>
+        </div>
+    
+        <script src="options.js"></script>
+    </body>
+    
+    </html>

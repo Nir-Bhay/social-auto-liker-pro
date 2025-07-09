@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "Social Auto-Liker Pro",
+  "version": "2.0.0",
+  "description": "Auto-like posts on LinkedIn and Instagram with advanced customization (Educational Purpose)",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://www.linkedin.com/*",
+    "https://www.instagram.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.linkedin.com/*"],
+      "js": ["content-linkedin.js"],
+      "css": ["styles.css"]
+    },
+    {
+      "matches": ["https://www.instagram.com/*"],
+      "js": ["content-instagram.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

@@ -1,0 +1,75 @@
+/* Floating Panel Styles */
+.sal-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    min-width: 250px;
+    z-index: 999999;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.sal-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+}
+
+.sal-panel.sal-linkedin {
+    border-top: 3px solid #0077b5;
+}
+
+.sal-panel.sal-instagram {
+    border-top: 3px solid #E4405F;
+}
+
+.sal-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.sal-status {
+    margin: 5px 0;
+    color: #666;
+}
+
+.sal-status-text {
+    font-weight: 500;
+    color: #333;
+}
+
+.sal-count,
+.sal-session {
+    margin: 5px 0;
+    color: #666;
+    font-size: 13px;
+}
+
+/* Animation for active status */
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.sal-panel .sal-status-text:contains("Running") {
+    color: #4caf50;
+    animation: pulse 2s infinite;
+}
